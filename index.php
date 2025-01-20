@@ -15,7 +15,6 @@
     <link rel="icon" href="img/apple-touch-icon.png" />
 
     <!-- icon for favourite website on android by creating manifest -->
-    <link rel="manifest" href="manifest.webmanifest" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -75,10 +74,10 @@
             <p class="hero-description">
             An innovative solution revolutionizing student bus pass management at Bangladesh Army International University of Science and Technology. Simplify, streamline, succeed.
             </p>
-            <a href="/tms/admin/login.php" target="_blank" class="btn btn-full margin-right-sm"
+            <a onclick="javascript: window.open('/tms/admin/login.php', '_blank');"  class="btn btn-full margin-right-sm"
               >Administration</a
             >
-            <a href="<?php echo '/tms/user/login.php'; ?>" target="_blank" class="btn btn-outline">Transport User</a>
+            <a onclick="javascript: window.open('/tms/user/login.php', '_blank');" class="btn btn-outline">Transport User</a>
             
           </div>
           <div class="hero-img-box">
