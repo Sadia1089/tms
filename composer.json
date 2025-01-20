@@ -1,0 +1,5 @@
+{
+    "require": {
+        "shipu/bkash": "^2.0"
+    }
+}
