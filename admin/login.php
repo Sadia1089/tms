@@ -12,6 +12,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindParam(':username', $username);
     $stmt->execute();
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    if(!$user){
+      $_SESSION['alert_message'] = 'User not found';
+      header("Location: /tms/admin/login.php");
+      exit;      
+    }
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
@@ -19,13 +24,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: dashboard.php");
         exit();
     } else {
-      echo "<script>alert('Login Failed')</script>";
+      $_SESSION['alert_message'] = 'Login Failed';
+      header("Location: /tms/admin/login.php");
+      exit;
     }
 }
+
 ?>
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,6 +80,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			<form form action="" method="post">
 				<img src="https://baiust.ac.bd/wp-content/uploads/2023/11/Untitled-design-150x150.png">
 				<h2 class="title">Administration</h2>
+
+        <?php if (isset($_SESSION['alert_message'])): ?>
+          <div class="alert alert-danger" role="alert">
+            <?php echo $_SESSION['alert_message']; unset($_SESSION['alert_message']); ?>
+          </div>
+        <?php endif; ?>
+        
            		<div class="input-div one">
            		   <div class="i">
            		   		<i class="fas fa-user"></i>
